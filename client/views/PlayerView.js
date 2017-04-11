@@ -6,28 +6,14 @@ var PlayerView = Backbone.View.extend({
   el: '<audio controls autoplay />',
 
   initialize: function() {
-    //debugger;
-    var song = this.model;
-    this.$el.on('ended', function(){
-      //console.log('ended', song.constructor);
-      debugger;
-      song.ended();
-    });
-    // this.handleEndOfSong(this.model);
     this.model.on('play', this.setSong, this);
-    //this.model.on('ended', this.close, this);
+    var bindEndOfSongHandler = this.handleEndOfSong.bind(this);
+    $(this.$el).on('ended', function(){ bindEndOfSongHandler() });
   },
-
-  // events: {
-  //   'ended audio':'handleEndOfSong'  
-  // },
 
   // Controller
   handleEndOfSong: function(song) {
-    // this.model.ended();
-    // this.model.dequeue();
-    debugger;
-
+    this.model.ended();
   },
 
   setSong: function(song) {
@@ -36,7 +22,6 @@ var PlayerView = Backbone.View.extend({
   },
 
   render: function() {
-    //debugger;
     return this.$el.attr('src', this.model ? this.model.get('url') : '');
   },
 

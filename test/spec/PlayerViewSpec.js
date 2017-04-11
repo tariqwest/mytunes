@@ -49,7 +49,7 @@ describe('PlayerView', function() {
     expect(appView.playerView.model).to.equal(secondSong);
     // Simulate the end of the second song
     $(appView.playerView.el).trigger('ended');
-    //expect(appView.playerView.model).to.equal(thirdSong);
+    expect(appView.playerView.model).to.equal(thirdSong);
   });
 
 });
