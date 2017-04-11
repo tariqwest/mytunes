@@ -9,7 +9,7 @@
     <script src="bower_components/backbone/backbone.js"></script>
 
     <script src="env/config.js"></script>
-    <!--<script src="data/data.js"></script>-->
+    <script src="data/data.js"></script>
 
     <script src="models/SongModel.js"></script>
     <script src="collections/Songs.js"></script>
@@ -28,17 +28,6 @@
 
     <script>
       $(function() {
-        
-        $.ajax({
-
-          url: 'http://parse.sfm6.hackreactor.com/mytunes/classes/songs',
-          type: 'GET',
-          contentType: 'application/json',
-
-          success: function(data) {
-            debugger;
-            var songData = data.results;
-            // set up model objects
             var library = new Songs(songData);
             var app = new AppModel({library: library});
 
@@ -47,13 +36,6 @@
 
             // put the view onto the screen
             $('body').append(appView.render());
-          },
-
-          error: function(data) {
-            console.error('MyTunes: Failed to retrieve songs', data);
-          }
-
-        });
 
       });
     </script>
