@@ -8,6 +8,7 @@ var Songs = Backbone.Collection.extend({
   	this.fetch({
   		success: function(collection, response){
   			console.log(response.results);
+        collection.fetched();
   		},
   		error: console.log('fetch error')
   	});
@@ -16,5 +17,11 @@ var Songs = Backbone.Collection.extend({
   // Parse returns the part of the response used to build collection
   parse: function(response){
   	return response.results;
+  },
+
+  fetched: function() {
+    // Triggering an event here will also trigger the event on the collection
+    this.trigger('fetch', this);
   }
+
 });
